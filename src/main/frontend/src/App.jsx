@@ -1,8 +1,14 @@
+import BasicLayout from './components/layout/BasicLayout'
+import ManagerLayoutjsx from './components/layout/ManagerLayout.jsx'
+import Join from './pages/member/Join.jsx'
+import './reset.css'
 function App() {
 
   return (
    <>
-    메인
+    {/* <BasicLayout /> */}
+    {/* <ManagerLayoutjsx /> */}
+    <Join />
    </>
   )
 }

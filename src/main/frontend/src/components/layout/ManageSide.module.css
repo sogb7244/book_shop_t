@@ -1,0 +1,26 @@
+.container{
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  margin: auto 20px;
+  padding: 0px 15px 15px 15px;
+}
+.container h3 {
+  padding: 20px;
+  color: white;
+  background-color:#313281;
+}
+.container > div > div{
+  color: white;
+  margin-bottom: 10px;
+}
+.itemCare, .purchaseCare, .memCare{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: #30aa6d;
+}
+.container span {
+  vertical-align: -4px;
+  margin: 0px 0px 5px 0px;
+}
