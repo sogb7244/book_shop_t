@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from './Header.module.css'
+import { Link } from 'react-router-dom'
 //일반 사용자가 보는 페이지의 헤더 영역
 
 const Header = () => {
@@ -8,7 +9,9 @@ const Header = () => {
       <div className={styles.top_menu}>
         <ul>
           <li>login</li>
-          <li>join</li>
+          <li>
+            <Link to='/join'>join</Link>
+          </li>
         </ul>
       </div>
       <div className={styles.banner_Div}>

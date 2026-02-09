@@ -1,41 +1,58 @@
 .container{
-  margin: auto;
+  margin: 0 auto;
   padding: 30px;
-  width: 350px;
+  width: 400px;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  border: 1px solid black;
+  color: #30aa6d;
 }
-.container button{
-  background-color: blueviolet;
-}
+
 .container > div{
   display: flex;
   flex-direction: column;
+  margin-bottom: 0.7rem;
 }
-.join {
+.container > div >p{
+  margin-bottom: 0.2rem;
+}
+.id_div {
   display: flex;
-  width: 100%;
 }
-.join > div {
-   display: grid;
-  grid-template-columns: 1fr auto;
-  width: 100%
+.id_div > div {
+  display: flex;
+  gap: 6px;
 }
-.telinput{
+.id_div input{
+  width: 70%;
+}
+.id_div button{
+  width: 30%;
+}
+.tel_div{
   display: flex;
   gap: 10px;
   
 }
-.telinput input{
+.tel_div input{
   width: 100%;
+}
+.address{
+  gap: 6px;
+  display: flex;
 }
 .address > div{
-  display: grid;
-  grid-template-columns: 1fr auto;
+  display: flex;
   width: 100%;
+  gap: 5px;
 }
-.address>div input{
+.address button{
+  width: 30%;
+}
+.address >div >input{
+  width: 70%;
+}
+
+.btn_div button{
   width: 100%;
 }
