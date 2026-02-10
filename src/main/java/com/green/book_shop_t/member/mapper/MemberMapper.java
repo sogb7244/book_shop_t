@@ -9,4 +9,6 @@ import java.util.List;
 public interface MemberMapper {
   //회원가입 쿼리 실행 메서드
    void join(MemberDTO memberDTO);
+  //이메일 중복 확인 쿼리 실행 메서드
+   String isUsableEmail(String memEmail);
 }

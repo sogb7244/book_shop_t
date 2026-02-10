@@ -55,13 +55,19 @@ table {
 
 
 /*  * -> 에스테리스크 (모든, 전부, all)   */
-*{     font-family: 'KblcourtEbttf';
+*{     
+	font-family: 'KblcourtEbttf';
   box-sizing: border-box;
 }
 /* <Link> 컴포넌트 디자인 */
 a{
 	color: black;
 	text-decoration: none;
+}
+.error{
+	margin-top: 0.2rem;
+	font-size: 0.8rem;
+	color: red;
 }
 
 

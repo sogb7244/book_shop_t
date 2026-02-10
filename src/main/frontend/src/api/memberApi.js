@@ -8,11 +8,25 @@ import axios from "axios"
  * @returns 
  */
 //회원가입 요청 api
-export const insertMember = async(joinData) => {
+export const insertMember = async(joinData) =>{
   try{
-    const response = await axios.post('http://localhost:8080/members',joinData);
+    const response = await axios.post('http://localhost:8080/members',joinData)
     return response;
-  } catch (e) {
-    console.log('회원가입 axios 에러',e)
+  } catch (e){
+    console.log('회원가입 오류', e);
+  }
+  axios.put
+}
+/**
+ * 입력한 이메일이 중복인지 확인하는 api이다.
+ * @param {string} memEmail 입력한 이메일
+ * @returns 
+ */
+export const checkId = async (memEmail) => {
+  try{
+    const response = await axios.get(`http://localhost:8080/members/checkId/${memEmail}`)
+    return response
+  } catch(e) {
+    console.log('이메일 중복 확인 axios 에러',e)
   }
 }
