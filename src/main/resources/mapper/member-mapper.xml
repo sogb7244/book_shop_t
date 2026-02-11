@@ -39,6 +39,8 @@
         FROM SHOP_MEMBER
         WHERE MEM_EMAIL = ${memEmail}
     </select>
+
+
 </mapper>
 
 

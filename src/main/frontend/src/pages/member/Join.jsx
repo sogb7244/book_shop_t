@@ -28,13 +28,14 @@ const Join = () => {
     addrDetail : ''
   });
   //유효성 검사 (validation) 결과 에러 메세지를 저장하는 함수
-  const [errors, setErrors] =useState({
+  const [errors, setErrors] = useState({
     memEmail : '',
     memPw : '',
     confirmPw : '',
     memName : '',
     memTel : ''
   });
+
   //마운트 시점인지 판단을 위한 state변수
   //cnt 값이 0일 때가 마운트 시점
   const[cnt, setCnt] =useState(0);
@@ -115,10 +116,14 @@ const Join = () => {
   const handleJoinData = (e) => {
     const {name, value} = e.target;
   
-    setJoindata(prev => ({...prev, //join 데이터의 최신데이터
-                [name] : value
-                        })
-               );
+      setJoindata((prev) => 
+         ({
+          ...prev,
+          [name] : value
+        })
+        
+      );
+
     //만약 연락처를 변경하고 있다면...
     
         if(name ==='tel1' || 

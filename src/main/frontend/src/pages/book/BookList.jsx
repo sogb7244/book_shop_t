@@ -1,9 +1,12 @@
 import React from 'react'
+import Input from '../../components/common/Input'
 
 
 const BookList = () => {
   return (
-    <div>도서 목록 페이지입니다</div>
+    <div>
+     
+    </div>
   )
 }
 
