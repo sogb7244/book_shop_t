@@ -11,3 +11,22 @@ export const insertBook = async(bookData) => {
     console.log('도서등록 axios 에러',e);
   }
 }
+
+//도서 목록 조회 axios
+export const getBookList = async() => {
+  try{
+    const result = await axios.get('http://localhost:8080/books')
+    return result;
+  }catch(e){
+    console.log('목록조회 오류',e)
+  }
+}
+//도서 상세 목록 조회 axios
+export const getDetail = async(BookDetail) => {
+  try{
+    const result = await axios.get('http://localhost:8080/books/detail',{params : BookDetail})
+    return result;
+  }catch(e){
+    console.log('목록상세조회 오류',e)
+  }
+}

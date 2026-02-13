@@ -1,0 +1,7 @@
+https://github.com/hyungjin099/book_shop_t
+
+혹시 프로젝트 소스코드 내려받기 하고싶으면
+
+내려받고자하는 폴더에서 'git bash' 실행
+아래 명령어 입력
+git clone https://github.com/hyungjin099/book_shop_t.git

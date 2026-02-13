@@ -30,3 +30,14 @@ export const checkId = async (memEmail) => {
     console.log('이메일 중복 확인 axios 에러',e)
   }
 }
+
+//로그인 함수
+export const login = async(loginData) => {
+  try{
+    //params 안의 데이터는 리엑트에서 던지는 데이터임
+    const response = await axios.get('http://localhost:8080/members/login',{params : loginData})
+    return response;
+  } catch(e) {
+    console.log('로그인 오류입니다',e)
+  }
+}

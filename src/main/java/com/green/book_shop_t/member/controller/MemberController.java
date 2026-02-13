@@ -39,5 +39,20 @@ public class MemberController {
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
   }
+  // 로그인 API
+  //(GET) localhost:8080/members/login
+  @GetMapping("/login")
+  public  ResponseEntity<?> checkLogin(MemberDTO memberDTO){
+    try {
+      //넘어오는 데이터의 이름과 일치하는 변수를 가진 DTO 객체로 데이터를 받는다
+      //일치하면 그냥 DTO쓰면됨
+      MemberDTO canLogin = memberService.isLogin(memberDTO);
+      System.out.println(canLogin);
+      return ResponseEntity.status(HttpStatus.OK).body(canLogin);
+    }catch (Exception e){
+      log.error("로그인 오류",e);
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+  }
 
 }

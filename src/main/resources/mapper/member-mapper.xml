@@ -37,7 +37,14 @@
     <select id="isUsableEmail" resultType="String">
         SELECT MEM_EMAIL
         FROM SHOP_MEMBER
-        WHERE MEM_EMAIL = ${memEmail}
+        WHERE MEM_EMAIL = #{memEmail}
+    </select>
+    <!--로그인 쿼리-->
+    <select id="possibleLogin" resultMap="member">
+        SELECT *
+        FROM SHOP_MEMBER
+        WHERE MEM_EMAIL = #{memEmail}
+            AND MEM_PW = #{memPw}
     </select>
 
 

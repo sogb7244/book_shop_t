@@ -11,4 +11,6 @@ public interface MemberMapper {
    void join(MemberDTO memberDTO);
   //이메일 중복 확인 쿼리 실행 메서드
    String isUsableEmail(String memEmail);
+   //로그인 가능여부 실행 메서드
+  MemberDTO possibleLogin(MemberDTO memberDTO);
 }

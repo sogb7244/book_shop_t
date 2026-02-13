@@ -26,4 +26,11 @@ public class MemberService {
     String email = memberMapper.isUsableEmail(memEmail);
     return email == null;
   }
+  //로그인 여부 확인 기능 메서드
+  public MemberDTO isLogin(MemberDTO memberDTO){
+    //로그인 하려는 회원의 이메일, 이름, 권한정보를 리엑트에 전달
+    //로그인 x => null
+      MemberDTO login = memberMapper.possibleLogin(memberDTO);
+      return login;
+  }
 }

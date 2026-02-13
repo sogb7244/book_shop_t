@@ -7,10 +7,10 @@ import { Outlet } from 'react-router-dom'
 //- 일반 회원이 보는 화면의 레이아웃, 상단 헤더만 존재(2분할 화면) -//
 //////////////////////////////////////////////////////////////////
 
-const BasicLayout = () => {
+const BasicLayout = ({setloginInfo}) => {
   return (
     <div className={styles.container}>
-      <Header />
+      <Header setloginInfo={setloginInfo}/>
       <div style={{
         marginTop :'20px',
       }}>

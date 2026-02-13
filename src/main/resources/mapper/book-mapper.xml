@@ -32,6 +32,28 @@
        ,#{cateNum}
        )
    </insert>
+    <!--도서 목록조회 쿼리-->
+    <select id="selectBookList" resultMap="books">
+        SELECT BOOK_NUM
+        , BOOK_TITLE
+        , BOOK_PRICE
+        FROM SHOP_BOOK
+        ORDER BY BOOK_NUM DESC
+    </select>
+    <!--도서 상세 조회 쿼리-->
+    <select id="selectDetail" resultMap="books">
+        SELECT BOOK_TITLE
+        , AUTHOR
+        , BOOK_PRICE
+        , BOOK_STOCK
+        , BOOK_INTRO
+        FROM SHOP_BOOK
+        WHERE BOOK_TITLE = #{bookTitle}
+            , AUTHOR = #{author}
+            , BOOK_PRICE = #{bookPrice}
+            , BOOK_STOCK = #{bookStock}
+            , BOOK_INTRO = #{bookIntro}
+    </select>
 
 
 </mapper>

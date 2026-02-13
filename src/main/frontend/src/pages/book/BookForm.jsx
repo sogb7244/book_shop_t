@@ -4,6 +4,9 @@ import styles from './BookForm.module.css'
 import Button from '../../components/common/Button'
 import { getCateList } from '../../api/bookCateApi'
 import { insertBook } from '../../api/bookApi'
+import Select from '../../components/common/Select'
+import Textarea from '../../components/common/Textarea'
+import { Outlet } from 'react-router-dom'
 
 const BookForm = () => {
   //조회한 카테고리 목록 데이터를 저장할 state 변수
@@ -133,9 +136,10 @@ const BookForm = () => {
   
   return (
     <div className={styles.container}>
+      
       <div className={styles.category}>
         <p>Book Category</p>
-        <select
+        <Select
           name='cateNum'
           onChange={e => handleBookData(e)}
           value={bookData.cateNum} 
@@ -149,10 +153,9 @@ const BookForm = () => {
             >{cate.cateName}</option>
         )
        })}
-        </select>
+        </Select>
         {/* cateNum이 처음에 빈문자이기 때문에 false */}
         {errors.cateNum && <p className='error'>{errors.cateNum}</p>} 
-
       </div>
             
       <div className={styles.bookTitle}>
@@ -185,12 +188,13 @@ const BookForm = () => {
 
       <div className={styles.intro}>
         <p>Introduce</p>
-        <textarea 
+        <Textarea
           name='bookIntro'
           onChange={e => handleBookData(e)}
           value={bookData.bookIntro} >
-          </textarea>
+          </Textarea>
       </div>
+
       <div className={styles.publish}>
         <p>Publish Date</p>
         <Input
@@ -200,12 +204,15 @@ const BookForm = () => {
           value={bookData.publishDate} />
           {errors.publishDate && <p className='error'>{errors.publishDate}</p>}
       </div>
+
       <div>
         <Button 
           title='도서등록'
           onClick={e => {regBook(e);}}
         />
+        <Outlet/>
       </div>
+      
     </div>
   )
 }

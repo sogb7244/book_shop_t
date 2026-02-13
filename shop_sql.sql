@@ -31,6 +31,7 @@ SELECT *
 FROM book_category;
 
 
+
 SELECT *
 FROM shop_book;
 DROP TABLE BOOK_CATEGORY;
