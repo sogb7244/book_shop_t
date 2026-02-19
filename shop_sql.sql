@@ -30,6 +30,8 @@ CREATE TABLE BOOK_CATEGORY (
 SELECT *
 FROM book_category;
 
+SELECT *
+FROM shop_book;
 
 
 SELECT *
@@ -54,4 +56,18 @@ BOOK_NUM INT PRIMARY KEY AUTO_INCREMENT
 
 SELECT *
 FROM shop_member;
+
+INSERT INTO SHOP_BOOK values(3,'자바', '홍길동', 5000, 20, '홍콩마카오', '2023-02-13 00:00:00',1);
+INSERT INTO SHOP_BOOK values(4,'컴활', '길동', 2000, 20, '홍콩마카오', '2023-02-13 00:00:00',1);
+INSERT INTO SHOP_BOOK values(5,'c++', '동', 3000, 20, '홍콩마카오', '2023-02-13 00:00:00',1);
+INSERT INTO SHOP_BOOK values(6,'자바스크립트', '홍길', 4000, 20, '홍콩마카오', '2023-02-13 00:00:00',1);
+INSERT INTO SHOP_BOOK values(8,'스프링', '홍동', 5000, 20, '홍콩마카오', '2023-02-13 00:00:00',1);
+
+UPDATE shop_member
+SET
+  MEM_EMAIL = 'manager'
+  , MEM_PW = '1111'
+  , MEM_ROLE = 'MANAGER'
+WHERE MEM_EMAIL = '1';
+
 
