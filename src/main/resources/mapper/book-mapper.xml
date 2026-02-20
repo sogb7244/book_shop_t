@@ -17,14 +17,16 @@
 
    <insert id="bookReg">
        INSERT INTO SHOP_BOOK(
-         BOOK_TITLE
+          BOOK_NUM
+         , BOOK_TITLE
          , BOOK_PRICE
          , AUTHOR
          , BOOK_INTRO
          , PUBLISH_DATE
          , CATE_NUM
        ) VALUES (
-        #{bookTitle}
+       #{bookNum}
+       ,#{bookTitle}
        ,#{bookPrice}
        ,#{author}
        ,#{bookIntro}
@@ -54,7 +56,10 @@
             , BOOK_STOCK = #{bookStock}
             , BOOK_INTRO = #{bookIntro}
     </select>
-
+    <select id="getNextBookNum" resultType="int">
+        SELECT IFNULL(MAX(BOOK_NUM),0) +1
+        FROM SHOP_BOOK
+    </select>
 
 </mapper>
 

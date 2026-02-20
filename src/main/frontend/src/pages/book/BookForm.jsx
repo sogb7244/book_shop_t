@@ -151,7 +151,17 @@ const BookForm = () => {
   const response = await insertBook(regForm);
   if(response.status == 201){
       alert('등록 성공');
+      //input태그 내용 초기화
+      setBookData({
+        bookTitle : '',
+        bookPrice : '',
+        author : '',
+        bookIntro : '',
+        publishDate : '',
+        cateNum : '0'
+      });
   }
+
   else{
     alert('등록 실패');
   }
