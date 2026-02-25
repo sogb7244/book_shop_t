@@ -1,33 +1,36 @@
 import React from 'react'
 import styles from './ManagerHeader.module.css'
 import { useNavigate } from 'react-router-dom';
-const ManagerHeader = ({setloginInfo}) => {
-  const loginfo = sessionStorage.getItem('loginInfo');
-  const log = JSON.parse(loginfo);
-  console.log(log);
+
+const ManagerHeader = ({setLoginInfo}) => {
   const nav = useNavigate();
+
+  const loginInfo = sessionStorage.getItem('loginInfo');
+  const loginInfo_obj = JSON.parse(loginInfo); 
+
   return (
     <div className={styles.container}>
-      <img 
-      src="/bookrealm.png"
-      className={styles.logo}/>
+      <img src="/logo.png" className={styles.logo} />
       <ul>
         {
-          log.memEmail ?
+          loginInfo == null
+          ?
           <>
-          <li>{log.memRole}님 반갑습니다</li>
-        <li
-          onClick={(e) => {
-            sessionStorage.removeItem('loginInfo');
-            setloginInfo({})
-            nav('/')
-          }}>logout</li>
+           <li>Login</li>
+            <li>Join</li>
           </>
           :
           <>
-          <li>login</li>
-          <li>join</li>
-          </>
+            <li>{loginInfo_obj.memEmail}님 반갑습니다.</li>
+            <li 
+              style={{cursor:'pointer'}}
+              onClick={() => {
+                sessionStorage.removeItem('loginInfo');
+                setLoginInfo({});
+                nav('/');
+              }}
+            >Louout</li>
+          </> 
         }
       </ul>
     </div>

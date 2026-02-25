@@ -7,6 +7,8 @@ import java.util.List;
 
 @Mapper
 public interface BookImgMapper {
- //도서 이미지 등록 쿼리 실행 메서드
+  //도서 이미지 등록 쿼리 실행 메서드
   void insertImages(List<BookImgDTO> imgList);
+
+
 }

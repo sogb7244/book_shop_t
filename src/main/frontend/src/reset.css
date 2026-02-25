@@ -1,11 +1,17 @@
-
+@font-face {
+	font-family: 'JoseonGulim';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ChosunGu.woff') format('woff');
+	font-weight: normal;
+	font-display: swap;
+}
 
 @font-face {
-    font-family: 'KblcourtEbttf';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2601-5@1.0/KBLCourt_EBTTF.woff2') format('woff2');
+    font-family: 'YeogiOttaeJalnan';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
     font-weight: normal;
     font-display: swap;
 }
+
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -55,19 +61,21 @@ table {
 
 
 /*  * -> 에스테리스크 (모든, 전부, all)   */
-*{     
-	font-family: 'KblcourtEbttf';
+*{
   box-sizing: border-box;
+	font-family: 'JoseonGulim';
 }
+
 /* <Link> 컴포넌트 디자인 */
 a{
 	color: black;
 	text-decoration: none;
 }
+
 .error{
-	margin-top: 0.2rem;
 	font-size: 0.8rem;
 	color: red;
+	margin-top: 0.2rem;
 }
 
 

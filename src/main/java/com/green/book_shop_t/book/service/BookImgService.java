@@ -9,5 +9,16 @@ import org.springframework.stereotype.Service;
 public class BookImgService {
   private final BookImgMapper bookImgMapper;
 
-  //이미지 등록
+
+
 }
+
+
+
+
+
+
+
+
+
+

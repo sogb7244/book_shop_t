@@ -1,20 +1,20 @@
 package com.green.book_shop_t.member.dto;
+
 import lombok.*;
+
 import java.time.LocalDateTime;
 
 @Setter
 @Getter
 @ToString
-//@NoArgsConstructor //매개변수가없는 생성자 만들기
-//@AllArgsConstructor // 모든 매개변수를 가진 생성자
 public class MemberDTO {
-  private String memEmail;
-  private String memPw;
-  private String memName;
-  private String memTel;
-  private String memAddr;
-  private String addrDetail;
-  private String isUsing;
-  private String memRole;
-  private LocalDateTime joinDate;
+  private String memEmail;        // 이메일 (Primary Key)
+  private String memPw;           // 비밀번호
+  private String memName;         // 이름
+  private String memTel;          // 전화번호
+  private String memAddr;         // 주소
+  private String addrDetail;      // 상세주소
+  private String isUsing;         // 사용여부 (Y/N)
+  private String memRole;         // 권한 (USER/MANAGER/ADMIN)
+  private LocalDateTime joinDate;  // 가입일시
 }

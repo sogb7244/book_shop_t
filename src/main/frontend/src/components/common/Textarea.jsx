@@ -1,14 +1,12 @@
 import React from 'react'
-import styles from './Textarea.module.css'
+import styles from './Textarea.module.css';
 
 const Textarea = ({...props}) => {
   return (
-    <textarea 
-      className={styles.textarea}
+    <textarea
+      className={styles.ta}
       {...props}
-      >
-     
-    </textarea>
+    ></textarea>
   )
 }
 

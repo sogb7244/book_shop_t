@@ -7,6 +7,8 @@ import java.util.List;
 
 @Mapper
 public interface CateMapper {
-  //카테고리 목록 조회 쿼리실행메서드
-  List<CateDTO> selectCate();
+
+  //카테고리 목록 조회 쿼리 실행 메서드
+  List<CateDTO> selectCateList();
+
 }

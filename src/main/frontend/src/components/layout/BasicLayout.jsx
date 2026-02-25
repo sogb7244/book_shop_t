@@ -3,19 +3,20 @@ import styles from './BasicLayout.module.css'
 import Header from './Header'
 import { Outlet } from 'react-router-dom'
 
-//////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
 //- 일반 회원이 보는 화면의 레이아웃, 상단 헤더만 존재(2분할 화면) -//
-//////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
 
-const BasicLayout = ({setloginInfo}) => {
+const BasicLayout = ({setLoginInfo}) => {
+
+  console.log('BasicLayout 다시 읽음');
+
   return (
     <div className={styles.container}>
-      <Header setloginInfo={setloginInfo}/>
-      <div style={{
-        marginTop :'20px',
-      }}>
+      <Header setLoginInfo={setLoginInfo}/>
+      <div style={{marginTop : '20px'}}>
         {/* BasicLayout 컴포넌트와 함께 열리는 컴포넌트의 위치를 지정 */}
-        <Outlet/>
+        <Outlet />
       </div>
     </div>
   )

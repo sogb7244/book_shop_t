@@ -9,7 +9,8 @@ const Input = ({
     <input 
       className={styles.input}
       type={type}
-      {...props}/>
+      {...props}
+    />
   )
 }
 

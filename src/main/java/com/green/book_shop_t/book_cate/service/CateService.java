@@ -11,8 +11,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CateService {
   private final CateMapper cateMapper;
-    //카테고리 목록 조회 기능
-  public List<CateDTO> selectCate(){
-    return cateMapper.selectCate();
+
+  //카테고리 목록 조회 기능
+  public List<CateDTO> getList(){
+    List<CateDTO> list = cateMapper.selectCateList();
+    return list;
   }
+
 }

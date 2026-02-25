@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<!-- namespace에는 xml파일과 연결할 Mapper interface 파일명을 패키지를 포함하여 적어주세요 -->
+<mapper namespace="com.green.book_shop_t.cart.mapper.CartMapper">
+    <resultMap id="cart" type="com.green.book_shop_t.cart.dto.CartDTO">
+        <id column="CART_NUM" property="cartNum"/>
+        <result column="BOOK_NUM" property="bookNum"/>
+        <result column="CART_CNT" property="cartCnt"/>
+        <result column="MEM_EMAIL" property="memEmail"/>
+        <result column="CART_DATE" property="cartDate"/>
+        <association property="bookDTO" resultMap="com.green.book_shop_t.book.mapper.BookMapper.book"></association>
+    </resultMap>
+    <!--장바구니 등록-->
+    <insert id="insertCart">
+        INSERT INTO SHOP_CART (
+            BOOK_NUM
+            , CART_CNT
+            , MEM_EMAIL
+        ) VALUES (
+           #{bookNum}
+            , #{cartCnt}
+            , #{memEmail}
+        )
+    </insert>
+    <!-- 현재 장바구니에 상품 중복체크 쿼리 -->
+    <select id="isDuplicateBook" resultType="String">
+        SELECT MEM_EMAIL
+        FROM SHOP_CART
+        WHERE MEM_EMAIL = #{memEmail}
+        AND BOOK_NUM = #{bookNum}
+    </select>
+    <!-- 수량 업데이트 쿼리-->
+    <update id="updateCartCnt">
+        UPDATE SHOP_CART
+        SET
+            CART_DATE = SYSDATE()
+            , CART_CNT = CART_CNT + #{cartCnt}
+        WHERE MEM_EMAIL = #{memEmail}
+        AND BOOK_NUM = #{bookNum}
+    </update>
+
+    <select id="selectCartList" resultMap="cart">
+        SELECT C.CART_NUM
+        , BOOK_TITLE
+        , BOOK_PRICE
+        , C.CART_CNT
+        , I.UPLOAD_FILE_NAME
+        , C.CART_DATE
+        FROM SHOP_BOOK B, BOOK_IMG I, SHOP_CART C
+        WHERE B.BOOK_NUM = I.BOOK_NUM
+        AND B.BOOK_NUM = C.BOOK_NUM
+        AND I.IS_MAIN = 'Y'
+        AND C.MEM_EMAIL = #{memEmail}
+        ORDER BY CART_DATE DESC
+    </select>
+    <delete id="deleteCart">
+        DELETE FROM SHOP_CART
+        WHERE CART_NUM = #{cartNum}
+    </delete>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

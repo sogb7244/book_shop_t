@@ -1,26 +1,36 @@
 .container{
-  width: 80%;
+  border: 1px solid black;
+  padding: 12px;
+  background-color: rgba(211, 211, 211, 0.09);
+}
+
+.container > div:not(:first-child){
+  margin-top: 20px;
+}
+
+.container h5{
+  margin-bottom: 8px;
+}
+
+.container ul{
+
+}
+
+.container li{
+  padding: 10px 0px;
   display: flex;
-  flex-direction: column;
-  margin: auto 20px;
-  padding: 0px 15px 15px 15px;
+  gap: 4px;
+  padding-left: 8px;
+  font-size: 0.9rem;
 }
-.container h3 {
-  padding: 20px;
-  color: white;
-  background-color:#313281;
+
+.icon{
+  color: #673de6;
+  font-size: 0.9rem;
 }
-.container > div > div{
-  color: white;
-  margin-bottom: 10px;
-}
-.itemCare, .purchaseCare, .memCare{
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  background-color: #30aa6d;
-}
-.container span {
-  vertical-align: -4px;
-  margin: 0px 0px 5px 0px;
+
+.container li:hover{
+  background-color: #6840e013;
+  color: #1e2d40;
+  cursor: pointer;
 }

@@ -1,6 +1,8 @@
 package com.green.book_shop_t.book_cate.controller;
+
 import com.green.book_shop_t.book_cate.dto.CateDTO;
 import com.green.book_shop_t.book_cate.service.CateService;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -11,22 +13,33 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/categories")
 @Slf4j
+@RestController
 @RequiredArgsConstructor
+@RequestMapping("/categories")
 public class CateController {
   private final CateService cateService;
 
   //카테고리 목록 조회 api
-  @GetMapping
-  public ResponseEntity<?> getCategory(){
-    try {
-      List<CateDTO> result = cateService.selectCate();
-      return ResponseEntity.status(HttpStatus.OK).body(result);
+  //(GET) localhost:8080/categories
+  @GetMapping("")
+  public ResponseEntity<?> getList(){
+    try{
+      List<CateDTO> cateList = cateService.getList();
+      return ResponseEntity.status(HttpStatus.OK).body(cateList);
     }catch (Exception e){
-      log.error("카테고리 조회 실패",e);
+      log.error("카테고리 목록 조회 중 오류 발생", e);
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
   }
+
 }
+
+
+
+
+
+
+
+
+

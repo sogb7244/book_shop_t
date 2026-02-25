@@ -15,40 +15,45 @@
         <result column="MEM_ROLE"       property="memRole" />
         <result column="JOIN_DATE"      property="joinDate" />
     </resultMap>
+
     <!--회원가입-->
     <insert id="join">
-        INSERT INTO SHOP_MEMBER(
-           MEM_EMAIL
-          ,MEM_PW
-          ,MEM_NAME
-          ,MEM_TEL
-          ,MEM_ADDR
-          ,ADDR_DETAIL
-        ) VALUES(
-          #{memEmail}
-        , #{memPw}
-        , #{memName}
-        , #{memTel}
-        , #{memAddr}
-        , #{addrDetail}
+        INSERT INTO SHOP_MEMBER (
+            MEM_EMAIL
+            , MEM_PW
+            , MEM_NAME
+            , MEM_TEL
+            , MEM_ADDR
+            , ADDR_DETAIL
+        ) VALUES (
+            #{memEmail}
+            , #{memPw}
+            , #{memName}
+            , #{memTel}
+            , #{memAddr}
+            , #{addrDetail}
         )
     </insert>
+
     <!--중복 이메일 체크를 위한 쿼리-->
     <select id="isUsableEmail" resultType="String">
         SELECT MEM_EMAIL
         FROM SHOP_MEMBER
         WHERE MEM_EMAIL = #{memEmail}
     </select>
+
     <!--로그인 쿼리-->
-    <select id="possibleLogin" resultMap="member">
-        SELECT *
+    <select id="login" resultMap="member">
+        SELECT MEM_EMAIL
+            , MEM_NAME
+            , MEM_ROLE
         FROM SHOP_MEMBER
         WHERE MEM_EMAIL = #{memEmail}
-            AND MEM_PW = #{memPw}
+        AND MEM_PW = #{memPw}
     </select>
 
-
 </mapper>
+
 
 
 

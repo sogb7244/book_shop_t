@@ -1,53 +1,58 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import styles from './Header.module.css'
 import { Link, useNavigate } from 'react-router-dom'
+
 //일반 사용자가 보는 페이지의 헤더 영역
 
-const Header = ({setloginInfo}) => {
+const Header = ({setLoginInfo}) => {
   const nav = useNavigate();
-  // //로그인 여부 확인
-  // //json 타입으로 가져옴 = 문자열로 가져옴
-  // const loginInfo = sessionStorage.getItem('loginInfo');
-  // console.log(loginInfo);
-  // //json데이터를 객체로 변환
-  // const loginInfo_obj = JSON.parse(loginInfo);
-  // console.log(loginInfo_obj);
-     const loginInfo = sessionStorage.getItem('loginInfo');
-       const loginobj =JSON.parse(loginInfo);
+
+  //로그인 여부 확인, json 타입으로 가져옴
+  const loginInfo = sessionStorage.getItem('loginInfo');
+
+  //json 데이터를 객체로 변환
+  const loginInfo_obj = JSON.parse(loginInfo);
+
   return (
-    <div className={styles.container}>
+    <div>
       <div className={styles.top_menu}>
-        <ul> 
+        <ul>
+        {
+          loginInfo == null 
+          ?
           <>
-          <li
-           >
-            {loginobj ? <p>{loginobj.memName}님 반갑습니다</p> : <Link to='/login'>login</Link>}
-          </li>
-          <li>
-            <p>장바구니</p>
-          </li>
-          <li>
-            {loginobj ? <p
+            <li>
+              <Link to='/login'>Login</Link>
+            </li>
+            <li>
+              <Link to='/join'>Join</Link>
+            </li>
+          </>
+          :
+          <>
+            <li>{loginInfo_obj.memEmail}님 반갑습니다</li>
+            <li>{loginInfo_obj.memEmail ? <Link to='/my/cart-list'>마이페이지</Link> : '장바구니'}</li>
+            <li 
               style={{cursor :'pointer'}}
               onClick={e => {
                 sessionStorage.removeItem('loginInfo');
-                setloginInfo({});
+                setLoginInfo({});
                 nav('/');
               }}
-              >logout</p> :<Link to='/join'>join</Link>}
-          </li>
+            >Logout</li>
           </>
+        }
         </ul>
       </div>
-      <div className={styles.banner_Div}>
+      <div className={styles.banner_div}>
         <img 
           className={styles.banner_img}
           src="/book_banner.PNG" 
-          />
-          <h3 className={styles.banner_title}>Book Shop</h3>
+        />
+        <h3 className={styles.banner_title}>BOOK SHOP</h3>
       </div>
       <div>
-        일반 사용자가 보는 메뉴
+        일반사용자가 보는 메뉴
       </div>
     </div>
   )

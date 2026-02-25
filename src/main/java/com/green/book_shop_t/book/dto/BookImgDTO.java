@@ -14,3 +14,14 @@ public class BookImgDTO {
   private String isMain;
   private int bookNum;
 }
+
+
+
+
+
+
+
+
+
+
+

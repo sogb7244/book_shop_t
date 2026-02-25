@@ -1,48 +1,28 @@
 .container{
-  display: flex;
-  flex-direction: column;
   width: 300px;
-  gap: 10px;
-  text-align: left;
 }
-.category{
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-.bookTitle{
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-.priceAuthor{
-  display: flex;
-  width: 100%;
-  gap: 20px;
-}
-.priceAuthor > div{
-  display: flex;
-  flex-direction: column;
-}
-.priceAuthor > div > input{
-  width: 100%;
-}
-.intro{
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-.intro > textarea{
-  height: 100px;
-}
-.publish{
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
+
 .container > div{
-  gap: 5px;
+  margin-bottom: 1rem;
 }
-.container button{
+
+.container > div p{
+  margin-bottom: 0.3rem;
+  font-size: 0.9rem;
+}
+
+.tow_col{
+  display: flex;
+  gap: 0.7rem;
+}
+
+.btn_div > button{
+  width: 100%;
+}
+
+.container input,
+.container select,
+.container textarea
+{
   width: 100%;
 }

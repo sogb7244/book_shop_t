@@ -2,7 +2,7 @@ import React from 'react';
 import { useDaumPostcodePopup } from 'react-daum-postcode';
 
 const Postcode = () => {
-  const scriptUrl ='//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js';
+  const scriptUrl = '//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js';
   const open = useDaumPostcodePopup(scriptUrl);
 
   const handleComplete = (data) => {
@@ -23,7 +23,7 @@ const Postcode = () => {
   };
 
   const handleClick = () => {
-    open({ onComplete:handleComplete });
+    open({ onComplete: handleComplete });
   };
 
   return (
