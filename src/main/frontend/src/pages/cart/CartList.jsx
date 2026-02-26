@@ -100,6 +100,8 @@ const total = () => {
                       <input 
                       type="checkbox"
                       checked={true}
+                      value={cart.cartNum}
+                      
                       />
                     </td>
                     <td>
