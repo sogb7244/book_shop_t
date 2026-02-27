@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Header from "../../components/layout/Header";
 import styles from './CartList.module.css'
-import { deleteCart, selectCart } from '../../api/cartApi';
+import { deleteCart, selectCart, updateCnt } from '../../api/cartApi';
 import ListTable from '../../components/common/ListTable';
 import Button from '../../components/common/Button'
 import dayjs from 'dayjs';
@@ -97,6 +97,10 @@ if(confirm('정말 삭제할까요?')){
   }, [cartNumList]);
 
   console.log('cartNumList',cartNumList);
+  //장바구니 수량 변경 함수
+  const updateCartCnt = async(cartNum, cartCnt) => {
+    const response = await updateCnt(cartNum,cartCnt);
+  }
   return (
     <div className={styles.container}>
       <div>
@@ -177,7 +181,7 @@ if(confirm('정말 삭제할까요?')){
                         value={cart.cartCnt}
                         name='cartCnt'
                         onChange={e => {
-                          handleCntList(e);
+                          updateCartCnt(cart.cartNum, e.target.value);
                         }}
                       />
                     </td>

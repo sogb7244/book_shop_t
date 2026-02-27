@@ -59,10 +59,10 @@
         DELETE FROM SHOP_CART
         WHERE CART_NUM = #{cartNum}
     </delete>
-    <update id="updateCartCnt">
+    <update id="updateCartCnt1">
         UPDATE SHOP_CART
         SET
-            CART_cnt = #{cartCnt}
+            CART_CNT = #{cartCnt}
         WHERE CART_NUM = #{cartNum}
     </update>
 </mapper>

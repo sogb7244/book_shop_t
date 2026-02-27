@@ -26,3 +26,12 @@ export const deleteCart = async(bookNum) => {
     console.log('장바구니 선택 목록 삭제오류',e)
   }
 }
+
+export const updateCnt = async(cartNum,cartCnt) => {
+  try{
+    const response = await axios.put(`http://localhost:8080/carts/${cartNum}`,{'cartNum' : cartCnt})
+    return response;
+  } catch(e) {
+    console.log('장바구니 업데이트 오류',e)
+  }
+}

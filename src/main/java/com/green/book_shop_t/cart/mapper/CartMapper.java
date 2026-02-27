@@ -16,4 +16,5 @@ public interface CartMapper {
   //중복 체크 쿼리
   String isDuplicateBook(CartDTO cartDTO);
   void deleteCart(int cartNum);
+  void updateCartCnt1(CartDTO cartDTO);
 }

@@ -53,7 +53,19 @@ public class CartController {
     }
 
   }
-
+  //장바구니 수량 변경 api
+@PutMapping("/{cartNum}")
+  public ResponseEntity<?> updateCartCnt1(@PathVariable("cartNum")int cartNum,
+                                          @RequestBody CartDTO cartDTO){
+    try {
+      cartDTO.setCartNum(cartNum);
+     cartService.updateCartCnt1(cartDTO);
+     return ResponseEntity.status(HttpStatus.OK).build();
+    } catch(Exception e){
+      log.error("장바구니 수량변경 오류",e);
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+}
 
 
 }
