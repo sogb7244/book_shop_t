@@ -59,6 +59,14 @@
         DELETE FROM SHOP_CART
         WHERE CART_NUM = #{cartNum}
     </delete>
+    <delete id="deleteCarts">
+        DELETE FROM SHOP_CART
+        WHERE CART_NUM IN
+        <foreach  open="(" close=")" collection="cartNumList" item="cartNum" separator=",">
+          #{cartNum}
+        </foreach>
+
+    </delete>
     <update id="updateCartCnt1">
         UPDATE SHOP_CART
         SET

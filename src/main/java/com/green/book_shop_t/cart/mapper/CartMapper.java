@@ -17,4 +17,6 @@ public interface CartMapper {
   String isDuplicateBook(CartDTO cartDTO);
   void deleteCart(int cartNum);
   void updateCartCnt1(CartDTO cartDTO);
+  //장바구니 선택 삭제
+  void deleteCarts(List<Integer> cartNumList);
 }

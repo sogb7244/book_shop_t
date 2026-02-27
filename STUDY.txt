@@ -1,0 +1,9 @@
+단일행 서브쿼리가 아닌 경우, 중복이 있을때 DISTINCT를 사용한다
+
+WHERE SAL > (SELECT MIN(SAL) FROM EMP WHERE DEPTNO = 30);
+#WHERE SAL > ANY(SELECT SAL FROM EMP WHERE DEPTNO = 30);
+
+
+<foreach  open="(" close=")" collection="cartNumList" item="cartNum" separator=",">
+          #{cartNum}
+</foreach> 

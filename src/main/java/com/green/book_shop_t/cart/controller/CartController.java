@@ -20,54 +20,66 @@ public class CartController {
   //장바구니 등록 api
   //(POST) localhost:8080/carts
   @PostMapping("")
-  public ResponseEntity<?> regCart(@RequestBody CartDTO cartDTO){
-    try{
+  public ResponseEntity<?> regCart(@RequestBody CartDTO cartDTO) {
+    try {
       cartService.insertCart(cartDTO);
       return ResponseEntity.status(HttpStatus.CREATED).build();
-    }catch (Exception e){
+    } catch (Exception e) {
       log.error("장바구니 등록 api 오류", e);
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
   }
+
   //장바구니 목록 조회 api
   //(GET) localhost:8080/carts/이메일
   @GetMapping("/{memEmail}")
-  public ResponseEntity<?> selectCartList(@PathVariable("memEmail")String memEmail){
+  public ResponseEntity<?> selectCartList(@PathVariable("memEmail") String memEmail) {
     try {
       List<CartDTO> list = cartService.selectCartList(memEmail);
       return ResponseEntity.status(HttpStatus.OK).body(list);
-    } catch (Exception e){
-      log.error("장바구니 목록 조회 오류",e);
+    } catch (Exception e) {
+      log.error("장바구니 목록 조회 오류", e);
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
   }
 
   @DeleteMapping("/{cartNum}")
-  public ResponseEntity<?> deleteCart(@PathVariable("cartNum") int cartNum){
-    try{
+  public ResponseEntity<?> deleteCart(@PathVariable("cartNum") int cartNum) {
+    try {
       cartService.deleteCart(cartNum);
       return ResponseEntity.status(HttpStatus.OK).build();
-    } catch (Exception e){
-      log.error("장바구니 삭제 오류",e);
+    } catch (Exception e) {
+      log.error("장바구니 삭제 오류", e);
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
 
   }
+
   //장바구니 수량 변경 api
-@PutMapping("/{cartNum}")
-  public ResponseEntity<?> updateCartCnt1(@PathVariable("cartNum")int cartNum,
-                                          @RequestBody CartDTO cartDTO){
+  @PutMapping("/{cartNum}")
+  public ResponseEntity<?> updateCartCnt1(@PathVariable("cartNum") int cartNum,
+                                          @RequestBody CartDTO cartDTO) {
     try {
       cartDTO.setCartNum(cartNum);
-     cartService.updateCartCnt1(cartDTO);
-     return ResponseEntity.status(HttpStatus.OK).build();
-    } catch(Exception e){
-      log.error("장바구니 수량변경 오류",e);
+      cartService.updateCartCnt1(cartDTO);
+      return ResponseEntity.status(HttpStatus.OK).build();
+    } catch (Exception e) {
+      log.error("장바구니 수량변경 오류", e);
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
-}
+  }
 
-
+  //장바구니에서 선택한 장바구니 상품 삭제 api
+  @DeleteMapping("/del-carts")
+  public ResponseEntity<?> deletecarts1(@RequestParam("cartNumList")List<Integer> cartNumList) {
+    try {
+      cartService.deletecarts(cartNumList);
+      return ResponseEntity.status(HttpStatus.OK).build();
+    }catch (Exception e){
+      log.error("장바구니 선택 삭제 중 오류",e);
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+  }
 }
 
 

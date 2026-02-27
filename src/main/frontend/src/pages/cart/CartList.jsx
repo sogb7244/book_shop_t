@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Header from "../../components/layout/Header";
 import styles from './CartList.module.css'
-import { deleteCart, selectCart, updateCnt } from '../../api/cartApi';
+import { deleteCart, seldelCart, selectCart, updateCnt } from '../../api/cartApi';
 import ListTable from '../../components/common/ListTable';
 import Button from '../../components/common/Button'
 import dayjs from 'dayjs';
@@ -88,18 +88,37 @@ if(confirm('정말 삭제할까요?')){
           let sum = 0;
         for(const e of cartList){
           if(cartNumList.includes(e.cartNum)){
-          
             sum = sum + e.cartCnt * e.bookDTO.bookPrice;
           }
         }
          setTotalPrice(sum);
-
+         
   }, [cartNumList]);
 
   console.log('cartNumList',cartNumList);
   //장바구니 수량 변경 함수
   const updateCartCnt = async(cartNum, cartCnt) => {
-    const response = await updateCnt(cartNum,cartCnt);
+    //입력한 수량(cartCnt)가 숫자인지 확인
+    updateCnt(cartNum,cartCnt);
+  }
+  //장바구니 선택삭제 함수
+  const seldeler = async(cartNum) => {
+    seldelCart(cartNum);
+  }
+  const removeCarts = async() => {
+    //정말 삭제할지 물어봄
+    if(!confirm('정말 삭제하시겠습니까?')){
+      return;
+    }
+   
+    if(cartNumList.length === 0){
+      alert('삭제할 항목이 없습니다.')
+      return;
+      }
+    //삭제할 상품을 선택했는지 확인
+    await seldelCart(cartNumList);
+    getList();
+   
   }
   return (
     <div className={styles.container}>
@@ -163,7 +182,6 @@ if(confirm('정말 삭제할까요?')){
                         checked={cartNumList.includes(cart.cartNum)}
                         value={cart.cartNum}
                         onChange={e => handleCartNumList(e)
-                          
                         }
                       />
                     </td>
@@ -180,8 +198,9 @@ if(confirm('정말 삭제할까요?')){
                       <Input
                         value={cart.cartCnt}
                         name='cartCnt'
-                        onChange={e => {
-                          updateCartCnt(cart.cartNum, e.target.value);
+                        onChange={async(e) => {
+                          await updateCartCnt(cart.cartNum, e.target.value);
+                          getList()
                         }}
                       />
                     </td>
@@ -211,7 +230,15 @@ if(confirm('정말 삭제할까요?')){
         className={styles.total}>
         총가격 : {totalPrice.toLocaleString()}원
       </div>
-      <div></div>
+      <div className={styles.btn_div}>
+          <Button
+            title='선택삭제'
+            onClick={e => {
+              removeCarts()
+            }}/>
+          <Button
+            title='선택구매'/>
+      </div>
     </div>
   )
 }
