@@ -17,9 +17,12 @@ const CartList = () => {
   //제목줄의 체크박스 체크여부를 저장할 state 변수
   const [isChecked, setIsChecked] = useState(true);
   //마운트되면 장바구니 목록을 조회
+  const [cartCnt, setCartCnt] = useState([]); 
   useEffect(() =>{
     getList();
-  },[])
+    setCartCnt();
+    console.log(cartCnt);
+  },[cartCnt])
   //총 구매 가격 변수
 const [totalPrice, setTotalPrice] = useState(0);
   //장바구니 목록 다시 조회
@@ -71,7 +74,12 @@ if(confirm('정말 삭제할까요?')){
           //input태그에 입력되는건 문자열 -> Number로 씌워줌
           setCartNumList(cartNumList.filter(each => each !== Number(e. target.value)));
         }
-       
+  }
+  //장바구니 각자 수량 컨트롤 함수
+  const handleCntList = (e) => {
+    setCartCnt(cartList.map((each) => 
+      each.cartNum === cartNumList.filter(each => each) ? {[e.target.name] : e.target.value} : cartList.filter(cartCnt)
+    ));
   }
   //cartNumList state변수가 변경되면 실행할 useEffect
   //체크박스가 변경되면 총 가격을 변경
@@ -87,6 +95,7 @@ if(confirm('정말 삭제할까요?')){
          setTotalPrice(sum);
 
   }, [cartNumList]);
+
   console.log('cartNumList',cartNumList);
   return (
     <div className={styles.container}>
@@ -149,7 +158,9 @@ if(confirm('정말 삭제할까요?')){
                         type="checkbox"
                         checked={cartNumList.includes(cart.cartNum)}
                         value={cart.cartNum}
-                        onChange={e => handleCartNumList(e)}
+                        onChange={e => handleCartNumList(e)
+                          
+                        }
                       />
                     </td>
                     <td>
@@ -163,7 +174,12 @@ if(confirm('정말 삭제할까요?')){
                     <td>{cart.bookDTO.bookPrice.toLocaleString()}원</td>
                     <td className={styles.cnt_td}>
                       <Input
-                        value={cart.cartCnt}/>
+                        value={cart.cartCnt}
+                        name='cartCnt'
+                        onChange={e => {
+                          handleCntList(e);
+                        }}
+                      />
                     </td>
                     <td>{(cart.cartCnt * cart.bookDTO.bookPrice).toLocaleString()}원</td>
                     <td>{dayjs(cart.cartDate).format('YYYY-MM-DD HH:mm')}</td>
