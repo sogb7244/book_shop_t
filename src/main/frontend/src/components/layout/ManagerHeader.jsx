@@ -10,7 +10,7 @@ const ManagerHeader = ({setLoginInfo}) => {
 
   return (
     <div className={styles.container}>
-      <img src="/logo.png" className={styles.logo} />
+      <img src="/book_banner.PNG" className={styles.logo} />
       <ul>
         {
           loginInfo == null
