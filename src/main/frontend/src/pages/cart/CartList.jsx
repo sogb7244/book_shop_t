@@ -237,7 +237,11 @@ if(confirm('정말 삭제할까요?')){
               removeCarts()
             }}/>
           <Button
-            title='선택구매'/>
+            title='선택구매'
+            onClick={e => {
+              
+            }
+            }/>
       </div>
     </div>
   )

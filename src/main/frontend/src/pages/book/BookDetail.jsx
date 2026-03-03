@@ -5,6 +5,7 @@ import Input from '../../components/common/Input';
 import Button from '../../components/common/Button';
 import { getBookDetail } from '../../api/bookApi';
 import { regCart } from '../../api/cartApi';
+import { insertBuy } from '../../api/buyApi';
 
 const BookDetail = () => {
   const nav = useNavigate();
@@ -96,7 +97,30 @@ const BookDetail = () => {
     }
 
   }
-
+  //구매 버튼 클릭 시 실행 함수
+  const regBuy = () => {
+    if(!confirm('구매하시겠습니까?')){
+      return;
+    }
+    else{
+    //로그인한 회원의 이메일
+    const memEmail = JSON.parse(sessionStorage.getItem('loginInfo')).memEmail;
+    //자바로 가져갈 데이터
+    const data = {
+      buyPrice : cntAndPrice.price,
+      memEmail : memEmail,
+      detailList : [
+        {
+          bookNum :bookInfo.bookNum,
+          buyCnt : cntAndPrice.cnt
+        }
+      ]
+    }
+    insertBuy(data);
+    nav('/buyList');
+    }
+    
+  }
   return (
     <div className={styles.container}>
       <div className={styles.head_div}>
@@ -132,7 +156,10 @@ const BookDetail = () => {
 
             <div className={styles.btn_div}>
               <Button title='장바구니에 담기' variant='green' onClick={e => addCart()}/>
-              <Button title='바구 구매'/>
+              <Button title='바로 구매'
+                onClick={e =>{
+                  regBuy();
+                }}/>
             </div>
           </div>
         </div>

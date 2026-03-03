@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<!-- namespace에는 xml파일과 연결할 Mapper interface 파일명을 패키지를 포함하여 적어주세요 -->
+<mapper namespace="com.green.book_shop_t.buy.mapper.BuyMapper">
+    <resultMap id="buy" type="com.green.book_shop_t.buy.dto.BuyDTO">
+        <id property="buyNum" column="BUY_NUM" />
+        <result property="buyPrice" column="BUY_PRICE" />
+        <result property="memEmail" column="MEM_EMAIL" />
+        <result property="buyDate" column="BUY_DATE" />
+        <collection property="buyDetailDTO" resultMap="buyDetail"/>
+    </resultMap>
+
+    <resultMap id="buyDetail" type="com.green.book_shop_t.buy.dto.BuyDetailDTO">
+        <id property="buyDetailNum" column="BUY_DETAIL_NUM" />
+        <result property="bookNum" column="BOOK_NUM" />
+        <result property="buyCnt" column="BUY_CNT" />
+        <result property="buyNum" column="BUY_NUM" />
+        <association property="bookDTO" resultMap="com.green.book_shop_t.book.mapper.BookMapper.book" />
+    </resultMap>
+    <!--구매 등록(SHOP-BUY)-->
+    <!--구매 등록(BUY_DETAIL)-->
+    <!--useGeneratedKeys="true" -> auto_increment된 ket를 insert 시 사용하겠다는 의미-->
+    <!--keyProperty="buyNum" -> 이 쿼리의 빈값을 가져옴-->
+    <!--buyNum 변수에 생성된 key를 넣어주겠다는 의미-->
+    <insert id="insertBuy" useGeneratedKeys="true" keyProperty="buyNum">
+        INSERT INTO SHOP_BUY
+        (  BUY_PRICE
+        ,  MEM_EMAIL
+        )VALUES(
+            #{buyPrice}
+        ,    #{memEmail}
+        )
+    </insert>
+
+    <insert id="insertBuyDetail">
+        INSERT INTO BUY_DETAIL(
+            BOOK_NUM
+        ,   BUY_CNT
+        ,   BUY_NUM
+        ) VALUES
+        <foreach collection="detailList" item="detail" separator="," >
+        (
+        #{detail.bookNum}
+        ,   #{detail.buyCnt}
+        ,   #{buyNum}
+        )
+        </foreach>
+
+    </insert>
+<!--    <select id="selectBuyList" resultMap="buy">-->
+<!--        SELECT *-->
+<!--        FROM SHOP_BUY B-->
+<!--        INNER JOIN BUY_DETAIL BD-->
+<!--        ON B.BUY_NUM = BD.BUY_NUM-->
+<!--        INNER JOIN SHOP_BOOK S-->
+<!--        ON S.BOOK_NUM = BD.BOOK_NUM-->
+<!--        WHERE MEM_EMAIL = #{}-->
+<!--    </select>-->
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
