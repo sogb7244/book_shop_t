@@ -9,7 +9,7 @@
         <result property="buyPrice" column="BUY_PRICE" />
         <result property="memEmail" column="MEM_EMAIL" />
         <result property="buyDate" column="BUY_DATE" />
-        <collection property="buyDetailDTO" resultMap="buyDetail"/>
+        <collection property="detailList" resultMap="buyDetail"/>
     </resultMap>
 
     <resultMap id="buyDetail" type="com.green.book_shop_t.buy.dto.BuyDetailDTO">
@@ -49,15 +49,26 @@
         </foreach>
 
     </insert>
-<!--    <select id="selectBuyList" resultMap="buy">-->
-<!--        SELECT *-->
-<!--        FROM SHOP_BUY B-->
-<!--        INNER JOIN BUY_DETAIL BD-->
-<!--        ON B.BUY_NUM = BD.BUY_NUM-->
-<!--        INNER JOIN SHOP_BOOK S-->
-<!--        ON S.BOOK_NUM = BD.BOOK_NUM-->
-<!--        WHERE MEM_EMAIL = #{}-->
-<!--    </select>-->
+
+    <select id="selectBuyList" resultMap="buy">
+        SELECT B.BUY_NUM
+        , BUY_PRICE
+        , BUY_DATE
+        , BUY_CNT
+        , UPLOAD_FILE_NAME
+        , S.BOOK_TITLE
+        , S.BOOK_PRICE
+        FROM SHOP_BUY B
+        INNER JOIN BUY_DETAIL BD
+        ON B.BUY_NUM = BD.BUY_NUM
+        INNER JOIN SHOP_BOOK S
+        ON S.BOOK_NUM = BD.BOOK_NUM
+        INNER JOIN BOOK_IMG I
+        ON S.BOOK_NUM = I.BOOK_NUM
+        WHERE IS_MAIN = 'Y'
+        AND MEM_EMAIL = #{memEmail}
+        ORDER BY BUY_DATE DESC
+    </select>
 
 </mapper>
 

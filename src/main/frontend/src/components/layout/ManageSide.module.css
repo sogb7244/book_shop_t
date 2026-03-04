@@ -34,3 +34,6 @@
   color: #1e2d40;
   cursor: pointer;
 }
+.active{
+  font-weight: bold;
+}

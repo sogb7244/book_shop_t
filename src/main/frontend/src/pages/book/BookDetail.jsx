@@ -98,8 +98,8 @@ const BookDetail = () => {
 
   }
   //구매 버튼 클릭 시 실행 함수
-  const regBuy = () => {
-    if(!confirm('구매하시겠습니까?')){
+  const regBuy = async() => {
+    if(!confirm('구매완료후\n구매 목록페이지로 이동할까요?')){
       return;
     }
     else{
@@ -116,7 +116,7 @@ const BookDetail = () => {
         }
       ]
     }
-    insertBuy(data);
+    await insertBuy(data);
     nav('/buyList');
     }
     

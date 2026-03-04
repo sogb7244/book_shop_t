@@ -7,6 +7,7 @@ import Button from '../../components/common/Button'
 import dayjs from 'dayjs';
 import Input from '../../components/common/Input'
 import axios from 'axios';
+import { insertBuy } from '../../api/buyApi';
 
 const CartList = () => {
   //조회한 장바구니 목록을 저장할 변수
@@ -119,6 +120,46 @@ if(confirm('정말 삭제할까요?')){
     await seldelCart(cartNumList);
     getList();
    
+  }
+  //선택 도서 구매
+  const regBuys = async() => {
+    //로그인 여부 확인
+    const loginInfo = sessionStorage.getItem('loginInfo');
+    const loginInfo_obj = JSON.parse(loginInfo);
+  if (loginInfo === null) {
+  alert('로그인이 필요합니다!');
+  return;
+}
+    //구매 도서 선태 여부 확인
+    if(cartNumList.length===0){
+      alert('구매할 도서를 선택하세요');
+      return;
+    }
+    //아래 data변수의 detailList 키에 들어갈 데이터 생성
+    const detailList = [];
+    //체크한 도서수만큼 반복
+    for(let i = 0; i<cartNumList.length;i++){
+      const detailData = {
+        bookNum :cartList.filter(e => e.cartNum === cartNumList[i]).map(e => e.bookNum)[0],
+        buyCnt : cartList.filter(e => e.cartNum === cartNumList[i]).map(e => e.cartCnt)[0]
+      };
+      detailList.push(detailData);
+    }
+
+    //자바로 가져갈 데이터
+      const data = {
+          buyPrice : totalPrice,
+          memEmail : loginInfo_obj.memEmail,
+          detailList : detailList
+        }
+
+        console.log('자바로가져갈데이터',data);
+        //SHOP_BUY ,BUY_DETAIL 테이블에 데이터INSERT
+        await insertBuy(data);
+        alert(`선택하신 ${cartNumList.length}개의 상품을 구매했습니다.`)
+        //장바구니에서 구매한 도서는 삭제
+        await seldelCart(cartNumList);
+        getList();
   }
   return (
     <div className={styles.container}>
@@ -233,13 +274,15 @@ if(confirm('정말 삭제할까요?')){
       <div className={styles.btn_div}>
           <Button
             title='선택삭제'
+            size='medium'
             onClick={e => {
-              removeCarts()
+              removeCarts();
             }}/>
           <Button
             title='선택구매'
+            size='medium'
             onClick={e => {
-              
+              regBuys();
             }
             }/>
       </div>

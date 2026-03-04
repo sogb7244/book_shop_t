@@ -48,6 +48,7 @@
         , C.CART_CNT
         , I.UPLOAD_FILE_NAME
         , C.CART_DATE
+        , C.BOOK_NUM
         FROM SHOP_BOOK B, BOOK_IMG I, SHOP_CART C
         WHERE B.BOOK_NUM = I.BOOK_NUM
         AND B.BOOK_NUM = C.BOOK_NUM
