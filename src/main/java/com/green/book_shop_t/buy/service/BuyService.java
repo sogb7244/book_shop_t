@@ -28,4 +28,11 @@ public class BuyService {
   public List<BuyDTO> selectBuyList(String memEmail){
    return buyMapper.selectBuyList(memEmail);
   }
+  public BuyDTO selectSales(){
+    return buyMapper.selectsales();
+  }
+  public BuyDTO monthto(){
+    return buyMapper.monthtotal();
+  }
+
 }

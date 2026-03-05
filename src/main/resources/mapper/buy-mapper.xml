@@ -69,6 +69,18 @@
         AND MEM_EMAIL = #{memEmail}
         ORDER BY BUY_DATE DESC
     </select>
+    <select id="selectsales" resultType="com.green.book_shop_t.buy.dto.BuyDTO">
+        SELECT COUNT(BUY_NUM) AS totalCount
+            ,SUM(BUY_PRICE) AS totalPrice
+        FROM SHOP_BUY
+        WHERE DATE(BUY_DATE) = CURDATE()
+    </select>
+    <select id="monthtotal" resultType="com.green.book_shop_t.buy.dto.BuyDTO">
+        SELECT COUNT(BUY_NUM) AS totalCount
+        ,SUM(BUY_PRICE) AS totalPrice
+        FROM SHOP_BUY
+        WHERE MONTH(BUY_DATE) = MONTH(CURDATE())
+    </select>
 
 </mapper>
 

@@ -117,7 +117,7 @@ const BookDetail = () => {
       ]
     }
     await insertBuy(data);
-    nav('/buyList');
+    nav('/my/buy-list');
     }
     
   }

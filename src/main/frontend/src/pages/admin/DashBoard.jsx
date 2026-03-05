@@ -1,11 +1,11 @@
 import React from 'react'
+import AdminComponents from '../../components/admin/AdminComponents'
 
 const DashBoard = () => {
   return (
     <div>
-      <div>
-        오늘의 주문건수
-      </div>
+      <AdminComponents/>
+      
     </div>
   )
 }

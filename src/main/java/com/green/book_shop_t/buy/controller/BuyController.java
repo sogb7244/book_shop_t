@@ -39,4 +39,24 @@ public class BuyController {
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
   }
+  @GetMapping("/admin")
+  public ResponseEntity<?> sales(){
+    try {
+      BuyDTO list = buyService.selectSales();
+      return ResponseEntity.status(HttpStatus.OK).body(list);
+    }catch (Exception e){
+      log.error("sales 조회오류",e);
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+  }
+  @GetMapping("/adminMonth")
+  public ResponseEntity<?> months(){
+    try {
+      BuyDTO list = buyService.monthto();
+      return ResponseEntity.status(HttpStatus.OK).body(list);
+    }catch (Exception e){
+      log.error("sales 조회오류",e);
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+  }
 }
