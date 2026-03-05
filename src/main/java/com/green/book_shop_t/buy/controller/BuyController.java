@@ -28,10 +28,11 @@ public class BuyController {
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
   }
+  //구매 목록 조회
   @GetMapping("/{memEmail}")
   public ResponseEntity<?> select(@PathVariable("memEmail")String memEmail){
     try {
-      List<BuyDetailDTO> list = buyService.selectBuyList(memEmail);
+      List<BuyDTO> list = buyService.selectBuyList(memEmail);
       return ResponseEntity.status(HttpStatus.CREATED).body(list);
     }catch (Exception e){
       log.error("목록조회오류",e);

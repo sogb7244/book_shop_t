@@ -13,8 +13,9 @@ import BookDetail from './pages/book/BookDetail'
 import CartList from './pages/cart/CartList'
 import UserLayout from './components/layout/UserLayout'
 import CheckboxTest from './study/CheckboxTest'
-import BuyList from './pages/buy/buyList'
 import MyPage from './pages/member/MyPage'
+import BuyList from './pages/buy/buyList'
+import DashBoard from './pages/admin/DashBoard'
 
 function App() {
   
@@ -79,7 +80,7 @@ function App() {
 
           {/* 상품 등록 페이지, URL : localhost:5173/manage/book-form */}
           <Route path='book-form' element={ <BookForm /> }/>
-          
+          <Route path='manage-home' element={<DashBoard/>}/>
         </Route> 
 
       </Routes>

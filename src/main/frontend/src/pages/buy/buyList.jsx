@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react'
 import ListTable from '../../components/common/ListTable';
 import { selectCart } from '../../api/cartApi';
 import { selectBuyList } from '../../api/buyApi';
+import styles from './BuyList.module.css'
+import dayjs from 'dayjs';
 
-const buyList = () => {
+const BuyList = () => {
   //조회 바이리스트 목록 저장할 변수
     const [buyList,setBuyList] =useState([]);
     //마운트 시 바이리스트 목록 조회
@@ -20,53 +22,62 @@ const buyList = () => {
      
   
   return (
-    <div>
-        <ListTable>
-          <colgroup>
-            <col/>
-          </colgroup>
-          <thead>
-            {
-              buyList.length === 0 ? <tr>구매목록이 없습니다</tr> :
-              buyList.map((buys,i) => {
-                return(
-                  <tr>
-                    <td>
-                      <tr>{buys.buyNum}</tr>
-                      <tr>{}</tr>
-                      <table>
-                        {buys.detailList.map((e, i) => {
-                          return (
-                            <tr>
-                              <td colSpan={1}>{e.buyNum}</td>
-                              <td>{e.bookDTO.bookTitle}</td>
-                              <td>{e.bookDTO.bookPrice}</td>
-                              <td>{e.buyCnt}</td>
-                              <td>{e.buyCnt *e.bookDTO.bookPrice}</td>
-                            </tr>
-                          )
-                        })}
-                      </table>
-                    </td>
-                  </tr>
-                )
-              })
-            }
-          </thead>
-          <tbody>
-            {
-              buyList.map((buys,i) => {
-                return(
-                  <tr>
-                    
-                  </tr>
-                )
-              })
-            }
-          </tbody>
-        </ListTable>
+    <div className={styles.container}>
+    {
+      buyList.length ===0
+      ?
+      <p className={styles.not_buy}>구매내역이 존재하지 않습니다.</p>
+      :
+      buyList.map((buy,i) => {
+        return(
+        <div className={styles.buyInfo} key={i}>
+         <div className={styles.buy_content}>
+          <ListTable>
+            <thead>
+              <tr>
+             <td>{buyList.length-i}</td>
+                <td>{buy.detailList[0].bookDTO.bookTitle}
+                  {
+                       buy.detailList.length>1 &&
+                  <span>외{buy.detailList.length-1} 개</span>
+                  }
+                </td>
+                <td>{buy.buyPrice.toLocaleString()}원</td>
+                <td>{dayjs(buy.buyDate).format('YYYY-MM-DD hh:mm')}</td>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                buy.detailList.map((detail,j) => {
+                  return(
+                    <tr key={j}>
+                      <td>{buy.detailList.length-j}</td>
+                      <td className={styles.flex_td}>
+                        <img src={`http://localhost:8080/upload/${detail.bookDTO.bookImgList[0].uploadFileName}`}/>
+                      <p>{detail.bookDTO.bookTitle}</p>
+                      </td>
+                      <td>
+                        {detail.bookDTO.bookPrice.toLocaleString()}원
+                        </td>
+                      <td>
+                        {detail.buyCnt}
+                      </td>
+                      <td>
+                        {(detail.bookDTO.bookPrice*detail.buyCnt).toLocaleString()}원
+                        </td>
+                    </tr>
+                  )
+                })
+              }
+            </tbody>
+          </ListTable>
+        </div>
+      </div>)
+      })
+    }
+      
     </div>
   )
 }
 
-export default buyList
+export default BuyList

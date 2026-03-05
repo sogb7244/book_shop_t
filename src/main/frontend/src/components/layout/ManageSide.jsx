@@ -4,11 +4,13 @@ import {
   FaChartColumn, FaSquarePlus, FaCubesStacked, 
   FaFileArrowUp
 } from "react-icons/fa6";
+import { Link } from 'react-router-dom';
 
 const ManageSide = () => {
   return (
     <div className={styles.container}>
       <div>
+        <h5 ><Link to={'/manage/manage-home'}>관리자 홈</Link></h5>
         <h5>상품관리</h5>
         <ul>
           <li>

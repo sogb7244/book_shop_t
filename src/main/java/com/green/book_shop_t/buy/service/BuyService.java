@@ -24,7 +24,8 @@ public class BuyService {
     //BUY_DETAIL INSERT
     buyMapper.insertBuyDetail(buyDTO);
   }
-  public List<BuyDetailDTO> selectBuyList(String memEmail){
+  //구매 목록 조회
+  public List<BuyDTO> selectBuyList(String memEmail){
    return buyMapper.selectBuyList(memEmail);
   }
 }
