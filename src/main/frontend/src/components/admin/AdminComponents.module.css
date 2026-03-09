@@ -10,4 +10,15 @@
   border: 1px solid rgb(119, 157, 172,1);
   background-color:  rgb(119, 157, 172,0.3);
   border-radius: 5px;
+  padding: 10px;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.container>div>:first-child{
+  font-size: 1.5rem;
+}
+.container>div>:last-child{
+  align-self: end;
+  color: red;
 }

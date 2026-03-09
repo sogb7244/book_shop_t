@@ -49,7 +49,7 @@ const Login = ({setLoginInfo}) => {
 
       //일반유저 ->도서 목록 페이지로 이동
       //매니저 -> 상품 등록 페이지로 이동
-      nav(loginInfo.memRole === 'USER' ? '/' : '/manage/book-form');
+      nav(loginInfo.memRole === 'USER' ? '/' : '/manage/manage-home');
 
     }else{
       alert('ID, PW을 확인하세요.');

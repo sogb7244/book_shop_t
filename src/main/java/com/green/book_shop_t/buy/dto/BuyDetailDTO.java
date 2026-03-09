@@ -24,4 +24,5 @@ public class BuyDetailDTO {
   // BUY_NUM (FK, NOT NULL) - SHOP_BUY 테이블 참조
   private int buyNum;
   private BookDTO bookDTO;
+  private int totalCount;
 }

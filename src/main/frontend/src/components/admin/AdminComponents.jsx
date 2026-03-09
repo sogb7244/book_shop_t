@@ -36,13 +36,14 @@ const AdminComponents = () => {
       </div>
       <div>
         <p>오늘의 매출금액</p>
-        <p style={{fontSize:'30px'}}>{getSale.totalPrice}원</p>
+        <p style={{fontSize:'30px'}}>{Number(getSale.totalPrice).toLocaleString()}원</p>
       </div>
       <div>
         <p>이 달의 매출금액</p>
-        <p style={{fontSize:'30px'}}>{getMonth.totalPrice}원</p>
+        <p style={{fontSize:'30px'}}>{Number(getMonth.totalPrice).toLocaleString()}원</p>
       </div>
     </div>
+    
   )
 }
 

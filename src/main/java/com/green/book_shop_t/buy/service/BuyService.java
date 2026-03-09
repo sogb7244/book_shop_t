@@ -28,6 +28,7 @@ public class BuyService {
   public List<BuyDTO> selectBuyList(String memEmail){
    return buyMapper.selectBuyList(memEmail);
   }
+  //<!--오늘과 이 달의 주문건수 및 매출액 조회-->
   public BuyDTO selectSales(){
     return buyMapper.selectsales();
   }

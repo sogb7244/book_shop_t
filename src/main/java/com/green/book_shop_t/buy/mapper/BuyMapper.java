@@ -14,6 +14,7 @@ public interface BuyMapper {
   void insertBuyDetail(BuyDTO buyDTO);
   //구매목록 전체 조회
   List<BuyDTO> selectBuyList(String memEmail);
+  //<!--오늘과 이 달의 주문건수 및 매출액 조회-->
   BuyDTO selectsales();
   BuyDTO monthtotal();
 }
