@@ -140,7 +140,7 @@ if(confirm('정말 삭제할까요?')){
     //체크한 도서수만큼 반복
     for(let i = 0; i<cartNumList.length;i++){
       const detailData = {
-        bookNum :cartList.filter(e => e.cartNum === cartNumList[i]).map(e => e.bookNum)[0],
+        bookNum : cartList.filter(e => e.cartNum === cartNumList[i]).map(e => e.bookNum)[0],
         buyCnt : cartList.filter(e => e.cartNum === cartNumList[i]).map(e => e.cartCnt)[0]
       };
       detailList.push(detailData);

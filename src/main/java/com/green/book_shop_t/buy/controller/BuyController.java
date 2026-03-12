@@ -9,7 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @RestController
@@ -56,6 +58,62 @@ public class BuyController {
       return ResponseEntity.status(HttpStatus.OK).body(list);
     }catch (Exception e){
       log.error("sales 조회오류",e);
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+  }
+  @GetMapping("/selectMost")
+  public ResponseEntity<?> selectM(){
+    try {
+      List<BuyDetailDTO> list = buyService.selectMosts();
+      return ResponseEntity.status(HttpStatus.OK).body(list);
+    }catch (Exception e){
+      log.error("selectMost 조회오류",e);
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+  }
+  //오늘과 이 달의 주문건수 및 매출액 조회 api
+  @GetMapping("/sale-info")
+  public ResponseEntity<?> selectSaleInfo(){
+    try {
+      Map<String,Integer> saleInfoMap =  buyService.selectSaleInfo();
+      return ResponseEntity.status(HttpStatus.OK).body(saleInfoMap);
+    }catch (Exception e){
+      log.error("주문건수/매출액 조회 api 오류",e);
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+  }
+  @GetMapping("/purRank")
+  public ResponseEntity<?> purchaseRanking(){
+    try {
+      List<Map<String,Object>> purran =  buyService.purchaseRanking();
+      return ResponseEntity.status(HttpStatus.OK).body(purran);
+    }catch (Exception e){
+      log.error("구매랭킹 api 오류",e);
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+  }
+  @GetMapping("/bookRank")
+  public ResponseEntity<?> bookRank(){
+    try {
+      List<Map<String,Object>> bookRank =  buyService.bookRank();
+      return ResponseEntity.status(HttpStatus.OK).body(bookRank);
+    }catch (Exception e){
+      log.error("도서랭킹 api 오류",e);
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+  }
+  @GetMapping("/charts")
+  public  ResponseEntity<?> selectSale10(){
+    try {
+      //9~0까지 데이터가 들어있는 리스트
+      List<Integer> dayList = new ArrayList<>();
+      for(int i = 9; i> -1 ; i--){
+        dayList.add(i);
+      }
+      List<Map<String,Object>> charts =  buyService.selectSale10(dayList);
+      return ResponseEntity.status(HttpStatus.OK).body(charts);
+    }catch (Exception e){
+      log.error("차트 api 오류",e);
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
   }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -36,4 +37,23 @@ public class BuyService {
     return buyMapper.monthtotal();
   }
 
+  public List<BuyDetailDTO> selectMosts(){
+    return buyMapper.selectMost();
+  }
+  //오늘과 이달의 주문건수
+  public Map<String,Integer> selectSaleInfo(){
+    return buyMapper.selectSaleInfo();
+  }
+  //구매랭킹
+  public List<Map<String,Object>> purchaseRanking(){
+    return buyMapper.purchaseRanking();
+  }
+  //도서랭킹
+  public List<Map<String,Object>> bookRank(){
+    return buyMapper.bookRanking();
+  }
+  //차트
+  public List<Map<String,Object>> selectSale10(List<Integer> dayList){
+    return buyMapper.selectSale10(dayList);
+  }
 }

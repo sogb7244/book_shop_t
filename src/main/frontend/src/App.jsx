@@ -16,6 +16,8 @@ import CheckboxTest from './study/CheckboxTest'
 import MyPage from './pages/member/MyPage'
 import BuyList from './pages/buy/buyList'
 import DashBoard from './pages/admin/DashBoard'
+import AdminGraph from './components/admin/AdminGraph'
+import AdminRanking from './components/admin/AdminRanking'
 
 function App() {
   
@@ -56,7 +58,7 @@ function App() {
           <Route path='login' element={ <Login setLoginInfo={setLoginInfo} /> }/>
 
           {/* 장바구니 목록 페이지, URL : localhost:5173/cart-list */}
-          <Route path='cart-list' element={ <CartList /> }/>
+          <Route path='cart-list' element={ <CartList/> }/>
 
         </Route>
 
@@ -77,10 +79,12 @@ function App() {
           path='/manage' 
           element={ <ManagerLayout setLoginInfo={setLoginInfo}/> 
         }>
-
           {/* 상품 등록 페이지, URL : localhost:5173/manage/book-form */}
           <Route path='book-form' element={ <BookForm /> }/>
           <Route path='manage-home' element={<DashBoard/>}/>
+          <Route path='graph' element={<AdminGraph/>}/>
+          <Route path='rank' element={<AdminRanking/>}/>
+          
         </Route> 
 
       </Routes>

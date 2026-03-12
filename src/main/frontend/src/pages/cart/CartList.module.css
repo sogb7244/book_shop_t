@@ -4,7 +4,7 @@
 .flex_div{
   display: flex;
   align-items: center;
-  gap:1rem;
+  gap: 1rem;
 }
 .cnt_td > input{
   width: 100%;
@@ -13,5 +13,4 @@
 .total{
   font-size: 20px;
   text-align: right;
-  
 }

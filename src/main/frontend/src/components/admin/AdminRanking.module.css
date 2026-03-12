@@ -1,0 +1,22 @@
+.container{
+  width: 450px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+table{
+  width: 100%;
+}
+table td{
+  padding: 5px;
+  text-align: center;
+  border: 1px solid black;
+}
+.tr_module{
+   background-color: rgba(100,100,100,0.5)
+}
+.tr_value{
+   background-color: rgba(170,100,100,0.5);
+   border-bottom: 1px solid #c26d6d;
+}

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import styles from './AdminComponents.module.css'
-import axios from 'axios'
 import { sales, salesMonth } from '../../api/buyApi'
 
 const AdminComponents = () => {
@@ -25,11 +24,12 @@ const AdminComponents = () => {
   console.log(getMonth);
   return (
     <div className={styles.container}>
-      
+      <h3>매출 및 주문건수</h3>
       <div>
-        <p>오늘의 주문건수</p>
-        <p style={{fontSize:'30px'}}>{getSale.totalCount}</p>
-      </div>
+        <div>
+          <p>오늘의 주문건수</p>
+          <p style={{fontSize:'30px'}}>{getSale.totalCount}</p>
+        </div>
       <div>
         <p>이 달의 주문건수</p>
         <p style={{fontSize:'30px'}}>{getMonth.totalCount}</p>
@@ -41,6 +41,7 @@ const AdminComponents = () => {
       <div>
         <p>이 달의 매출금액</p>
         <p style={{fontSize:'30px'}}>{Number(getMonth.totalPrice).toLocaleString()}원</p>
+      </div>
       </div>
     </div>
     

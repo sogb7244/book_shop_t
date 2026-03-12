@@ -1,10 +1,8 @@
 .container{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-columns: 1fr 1fr;
-  width: 50%;
-  gap: 20px;
- 
+ width: 450px;
+ gap: 10px;
+ display: flex;
+ flex-direction: column;
 }
 .container > div{
   border: 1px solid rgb(119, 157, 172,1);
@@ -12,8 +10,9 @@
   border-radius: 5px;
   padding: 10px;
   gap: 10px;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
 }
 .container>div>:first-child{
   font-size: 1.5rem;
